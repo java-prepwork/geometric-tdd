@@ -1,6 +1,5 @@
 package com.sixTwoThree;
 
-
 import org.junit.jupiter.api.Test;
 
 import static com.sixTwoThree.Length.*;
@@ -65,6 +64,32 @@ public class CentimeterTest{
 
         assertThat(twoHundredCentimeter,is(not(equalTo(twoKilometer))));
     }
+
+    @Test
+    void toCheckEqualityWhenOneMeterIsAddedWithHundredCentimeterToGiveTwoHundredCentimeter()
+    {
+        Length oneMeter = meter(1);
+        Length hundredCentimeters = centimeter(100);
+        Length twoMeter = meter(2);
+//        Length total = addTwoLengths(oneMeter, hundredCentimeters);
+
+        assertThat(oneMeter.plus(hundredCentimeters),is(equalTo(twoMeter)));
+    }
+
+    @Test
+     void toCheckEqualityWhenTwoHundredCentimeterIsAddedWithOneKilometerToGiveOneLakhTwoHundredCentimeter(){
+       Length twoHundredCentimeter = centimeter(200);
+       Length oneKilometer = kilometer(1);
+       Length oneLakhAndTwoHundredCentimeter = centimeter(100200);
+
+//       Length total = addTwoLengths(twoHundredCentimeter,oneKilometer);
+
+//       assertThat(total,is(equalTo(oneLakhAndTwoHundredCentimeter)));
+       assertThat(twoHundredCentimeter.plus(oneKilometer),is(equalTo(oneLakhAndTwoHundredCentimeter)));
+
+//       assertThat(twoHundredCentimeter,plus(oneKilometer));
+    }
+
 
 
 }

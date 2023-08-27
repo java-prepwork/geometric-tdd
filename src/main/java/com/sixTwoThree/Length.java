@@ -1,20 +1,22 @@
 package com.sixTwoThree;
 public class Length{
 
-    private final Unit unit;
-    private final double magnitude;
+
 
     private static class Unit{
         private final double baseFactor;
-        static Unit M = new Unit(1);
-        static Unit CM = new Unit(0.01);
-        static Unit KM = new Unit(1000);
+        private static final Unit M = new Unit(1);
+        private static final Unit CM = new Unit(0.01);
+        private static final Unit KM = new Unit(1000);
 
         Unit(double baseFactor)
         {
             this.baseFactor = baseFactor;
         }
     }
+
+    private final Unit unit;
+    private final double magnitude;
      public static Length centimeter(double magnitude){
          return new Length(magnitude, Unit.CM);
      }
@@ -33,10 +35,22 @@ public class Length{
          this.unit = unit;
      }
 
-     private double convertToBase()
+     private double convertToUnit(Unit toUnit)
      {
-         return magnitude* (unit.baseFactor * Unit.M.baseFactor);
+         return magnitude * (unit.baseFactor / toUnit.baseFactor);
      }
+
+//    public static Length addTwoLengths(Length firstParameter,Length secondParameter)
+//    {
+//        return new Length(firstParameter.convertToBase() + secondParameter.convertToBase(),Unit.M );
+//    }
+
+    public Length plus(Length lengthToBeAdded)
+    {
+        double resultMagnitude = magnitude + lengthToBeAdded.convertToUnit(unit);
+        return new Length(resultMagnitude, unit);
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -48,58 +62,8 @@ public class Length{
         {
             return false;
         }
-        return convertToBase() == ((Length) obj).convertToBase();
+        return convertToUnit(Unit.M) == ((Length) obj).convertToUnit(Unit.M);
     }
+
+
 }
-//class Centimeter{
-//    private final int magnitude;
-////    Centimeter(int magnitude)
-////    {
-////        super(magnitude);
-////    }
-//
-//    Centimeter(int magnitude)
-//    {
-//        this.magnitude = magnitude;
-//    }
-//
-//    public int getMagnitude() {
-//        return magnitude;
-//    }
-//
-//    @Override
-//    public boolean equals(Object obj) {
-//       if (this == obj)
-//       {
-//           return true;
-//       }
-//       if (this.getClass() != obj.getClass())
-//       {
-//           return false;
-//       }
-////       Centimeter that = (Centimeter) obj;
-//        return this.magnitude == ((Centimeter) obj).magnitude;
-//    }
-//}
-//class Meter{
-//    private final int magnitude;
-////    Meter(int magnitude)
-////    {
-////        super(magnitude);
-////    }
-//
-//    Meter(int magnitude)
-//    {
-//        this.magnitude = magnitude;
-//    }
-//
-//    public boolean isMeterCentimeterEquals(int meterMagnitude, int centimeterMagnitude)
-//    {
-//
-//        return centimeterMagnitude/100 == meterMagnitude;
-//    }
-//    @Override
-//    public boolean equals(Object obj) {
-//        return isMeterCentimeterEquals(this.magnitude, ((Centimeter) obj).getMagnitude());
-//    }
-//}
