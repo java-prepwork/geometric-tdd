@@ -51,6 +51,12 @@ public class Length{
         return new Length(resultMagnitude, unit);
     }
 
+    public Length minus(Length lengthToBeAdded)
+    {
+        double resultMagnitude = magnitude - lengthToBeAdded.convertToUnit(unit);
+        return new Length(resultMagnitude, unit);
+    }
+
 
     @Override
     public boolean equals(Object obj) {

@@ -90,6 +90,24 @@ public class CentimeterTest{
 //       assertThat(twoHundredCentimeter,plus(oneKilometer));
     }
 
+    @Test
+    void toCheckEqualityWhenFiftyCentimeterIsSubtractedWithOneMeterToGiveZeroPointFiveMeter(){
+        Length oneMeter = meter(1);
+        Length fiftyCentimeter = centimeter(50);
+        Length zeroPointFiveMeter = meter(0.5);
+
+        assertThat(oneMeter.minus(fiftyCentimeter),is(equalTo(zeroPointFiveMeter)));
+    }
+
+    @Test
+    void toCheckEqualityWhenOneMeterIsSubtractedWithTwoThousandCentimeterToGiveThousandNineHundredMeter(){
+        Length twoThousandCentimeter = centimeter(2000);
+        Length oneMeter = meter(1);
+        Length thousandAndNineHundredCentimeter = centimeter(1900);
+
+        assertThat(twoThousandCentimeter.minus(oneMeter),is(equalTo(thousandAndNineHundredCentimeter)));
+    }
+
 
 
 }
