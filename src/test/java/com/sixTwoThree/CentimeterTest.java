@@ -100,7 +100,7 @@ public class CentimeterTest{
     }
 
     @Test
-    void toCheckEqualityWhenOneMeterIsSubtractedWithTwoThousandCentimeterToGiveThousandNineHundredMeter(){
+    void toCheckEqualityWhenOneMeterIsSubtractedWithTwoThousandCentimeterToGiveThousandNineHundredCentimeter(){
         Length twoThousandCentimeter = centimeter(2000);
         Length oneMeter = meter(1);
         Length thousandAndNineHundredCentimeter = centimeter(1900);
